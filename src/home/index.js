@@ -4,4 +4,10 @@
  * Add or delete these files as per needed.
  */
 
+import { sectionHero } from './hero'
+
 console.log('Hello from Home folder')
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  sectionHero()
+})
