@@ -26,7 +26,7 @@ return /******/ (() => { // webpackBootstrap
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers_function_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/function-name */ \"./src/helpers/function-name.js\");\n/**\n * This file is to keep all the global functions that you want in the entire webflow site.\n */\n\nconsole.log('Hello from Global folder')\n\n;\n\n(0,_helpers_function_name__WEBPACK_IMPORTED_MODULE_0__.functionName)()\n\n\n//# sourceURL=webpack://webflow-developer-starter-template/./src/global/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers_function_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/function-name */ \"./src/helpers/function-name.js\");\n/**\r\n * This file is to keep all the global functions that you want in the entire webflow site.\r\n */\r\n\r\nconsole.log('Hello from Global folder')\r\n\r\n;\r\n\r\n(0,_helpers_function_name__WEBPACK_IMPORTED_MODULE_0__.functionName)()\r\n\n\n//# sourceURL=webpack://webflow-developer-starter-template/./src/global/index.js?");
 
 /***/ }),
 
@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hel
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   functionName: () => (/* binding */ functionName)\n/* harmony export */ });\n/**\n * In the helpers folder you can create reusable function that might need\n * for required pages.\n *\n * Ex: button-hover.js, random-interaction.js, etc\n *\n * Add or edit this file name as per needed\n */\n\nconst functionName = () => {\n  console.log('This is a fuction from Helper folder')\n}\n\n\n//# sourceURL=webpack://webflow-developer-starter-template/./src/helpers/function-name.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   functionName: () => (/* binding */ functionName)\n/* harmony export */ });\n/**\r\n * In the helpers folder you can create reusable function that might need\r\n * for required pages.\r\n *\r\n * Ex: button-hover.js, random-interaction.js, etc\r\n *\r\n * Add or edit this file name as per needed\r\n */\r\n\r\nconst functionName = () => {\r\n  console.log('This is a fuction from Helper folder')\r\n}\r\n\n\n//# sourceURL=webpack://webflow-developer-starter-template/./src/helpers/function-name.js?");
 
 /***/ })
 

@@ -25,7 +25,7 @@ return /******/ (() => { // webpackBootstrap
   \****************************/
 /***/ (() => {
 
-eval("/**\n * This is the individual file for a webflow page.\n * For About page js\n * Add or delete these files as per needed\n */\n\nconsole.log('Hello from About folder')\n\n\n//# sourceURL=webpack://webflow-developer-starter-template/./src/about/index.js?");
+eval("/**\r\n * This is the individual file for a webflow page.\r\n * For About page js\r\n * Add or delete these files as per needed\r\n */\r\n\r\nconsole.log('Hello from About folder')\r\n\n\n//# sourceURL=webpack://webflow-developer-starter-template/./src/about/index.js?");
 
 /***/ })
 

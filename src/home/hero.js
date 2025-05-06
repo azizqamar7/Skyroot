@@ -1,25 +1,19 @@
 import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 // Function to create and append a canvas to the .home_hero element
 function createCanvas() {
-  // Find the home_hero container
-  const homeHero = document.querySelector('.home_hero')
-
-  // Check if the home_hero element exists
-  if (!homeHero) {
-    console.error('Could not find .home_hero element in the DOM')
-    return
-  }
-
+ 
   // Create a canvas element
   const canvas = document.createElement('canvas')
+  const canvasContainer = document.querySelector('[data-webgl-scene="example-scene"]')
 
   // Add any necessary attributes and classes
   canvas.id = 'home_canvas'
   canvas.className = 'home_canvas'
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
-
+  canvas.style.width = '100%'
+  canvas.style.height = '100%'
+  canvas.style.maxWidth = '100%'
   // Style the canvas if needed
   canvas.style.display = 'block'
   canvas.style.position = 'absolute'
@@ -28,7 +22,7 @@ function createCanvas() {
   canvas.style.zIndex = '1000'
 
   // Append the canvas to the home_hero element
-  homeHero.appendChild(canvas)
+  canvasContainer.appendChild(canvas)
 
   // Return the canvas reference for further use with THREE.js
   return canvas
@@ -39,53 +33,70 @@ export const sectionHero = () => {
     height = window.innerHeight
 
   // init
-
   const camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 10)
-  camera.position.z = 1
+  camera.position.z = 3 // Moved camera back to see the model better
 
   const scene = new THREE.Scene()
-
-  const textureLoader = new THREE.TextureLoader()
-  //   const texture = textureLoader.load('/cat3.jpg')
-
-  const geometry = new THREE.PlaneGeometry(0.2, 0.2)
-  const material = new THREE.MeshBasicMaterial({
-    // map: texture,
-    color: 'red',
-    side: THREE.DoubleSide,
-  })
-
-  const mesh = new THREE.Mesh(geometry, material)
-  scene.add(mesh)
-
-  //   const renderer = new THREE.WebGLRenderer({
-  //     antialias: true,
-  //     canvas: '.home_canvas',
-  //   })
 
   const canvas = createCanvas()
   let renderer
 
-  // Initialize THREE.js with the canvas (if needed)
+  // Initialize THREE.js with the canvas
   if (canvas && typeof THREE !== 'undefined') {
-    // Example: Initialize THREE.js renderer with the canvas
     renderer = new THREE.WebGLRenderer({
       canvas: canvas,
       antialias: true,
       alpha: true,
     })
-
-    // Now you can safely use the renderer and canvas
     console.log('THREE.js renderer initialized successfully')
   }
 
   renderer.setSize(width, height)
   renderer.setAnimationLoop(animate)
-  document.body.appendChild(renderer.domElement)
+
+  // Add lights
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+  scene.add(ambientLight)
+  
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
+  directionalLight.position.set(1, 1, 1)
+  scene.add(directionalLight)
+
+  // Load GLTF model
+  const loader = new GLTFLoader()
+  let model
+
+  loader.load(
+    'https://skyroot-assets.netlify.app/rocket.glb', // Replace with your model path
+    (gltf) => {
+      model = gltf.scene
+      
+      // Center the model
+      const box = new THREE.Box3().setFromObject(model)
+      const center = box.getCenter(new THREE.Vector3())
+      model.position.sub(center)
+      
+      // Scale the model if needed
+      const size = box.getSize(new THREE.Vector3())
+      const maxDim = Math.max(size.x, size.y, size.z)
+      const scale = 2 / maxDim
+      model.scale.multiplyScalar(scale)
+      
+      scene.add(model)
+    },
+    (xhr) => {
+      console.log((xhr.loaded / xhr.total * 100) + '% loaded')
+    },
+    (error) => {
+      console.error('An error happened loading the model:', error)
+    }
+  )
 
   // animation
-
   function animate(time) {
+    if (model) {
+      model.rotation.y += 0.005 // Optional: Add some rotation to the model
+    }
     renderer.render(scene, camera)
   }
 }
